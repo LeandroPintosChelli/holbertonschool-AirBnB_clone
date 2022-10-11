@@ -3,7 +3,7 @@
 
 from uuid import uuid4
 from datetime import datetime
-
+import models
 
 class BaseModel:
     """Represents the BaseModel of the project."""
@@ -24,23 +24,26 @@ class BaseModel:
                     self.__dict__[key] = datetime.strptime(value, t_format)  # Strptime, crea un objeto de fecha y hora a partir de una cadena dada
                 else:  # Si key no es igual a los strings, lo iguala al value
                     self.__dict__[key] = value
+        else:
+            models.storage.new(self)
 
     def save(self):
         """Update updated_at with the current datetime."""
-        self.updated_at = datetime.now()
+        self.updated_at = datetime.now()  # Actualiza el atributo publico con la fecha y hora actual
+        models.storage.save()
 
-    def to_dict(self):
+    def to_dict(self):  # Retorna un diccionario con las keys y values de __dict__ de la instancia
         """Return the dictionary of the BaseModel instance.
         Includes the key/value pair __class__ representing
         the class name of the object.
         """
-        dictionary = self.__dict__.copy()
-        dictionary["__class__"] = type(self).__name__
-        dictionary["created_at"] = dictionary["created_at"].isoformat()
-        dictionary["updated_at"] = dictionary["updated_at"].isoformat()
+        dictionary = self.__dict__.copy() #  Hace una copia del diccionario
+        dictionary["__class__"] = self.__class__.__name__
+        dictionary["created_at"] = dictionary["created_at"].isoformat()  # Lo convierte en ISO format
+        dictionary["updated_at"] = dictionary["updated_at"].isoformat()  # Lo convierte en ISO format
         return dictionary
 
     def __str__(self):
         """Print the str representation of the BaseModel instance."""
         return "[{}] ({}) {}".\
-            format(type(self).__name__, self.id, self.__dict__)
+            format(self.__class__.__name__, self.id, self.__dict__)
