@@ -29,13 +29,13 @@ class FileStorage:
             json.dump(new_dict, f)
 
     def reload(self):
-        '''If json file exists, convert obj dicts back to instances'''
+        """If json file exists, convert obj dicts back to instances"""
         try:
             with open(self.__file_path, 'r') as f:
                 new_obj = json.load(f)
-                for o in new_obj.values():
-                    cls_name = o["__class__"]
-                    del o["__class__"]
-                    self.new(eval(cls_name)(**o))
+                for i in new_obj.values():
+                    cls_name = i["__class__"]
+                    del i["__class__"]
+                    self.new(eval(cls_name)(**i))
         except FileNotFoundError:
             pass
