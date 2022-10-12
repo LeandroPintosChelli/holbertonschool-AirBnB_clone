@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """"Base_model tests"""
 
+from lib2to3.pytree import Base
 import unittest
 import json
 from models.base_model import BaseModel
@@ -29,15 +30,14 @@ class TestBaseModel(unittest.TestCase):
         Base_dict["updated_at"] = Base_dict["updated_at"].isoformat()
         self.assertEqual(Base_dict, Base.to_dict())
 
-    def resetStorage(self):
-        """Resets FileStorage data."""
-        FileStorage._FileStorage__objects = {}
-        if os.path.isfile(FileStorage._FileStorage__file_path):
-            os.remove(FileStorage._FileStorage__file_path)
+#    def resetStorage(self):
+#       """Resets FileStorage data."""
+#        FileStorage._FileStorage__objects = {}
+#        if os.path.isfile(FileStorage._FileStorage__file_path):
+#            os.remove(FileStorage._FileStorage__file_path)
 
     def test_3_init_many_args(self):
-        """Tests __init__ with many arguments."""
-        self.resetStorage()
+#       self.resetStorage()
         args = [i for i in range(1000)]
-        b = BaseModel(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-        b = BaseModel(*args)
+        Base = BaseModel(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+        Base = BaseModel(*args)
