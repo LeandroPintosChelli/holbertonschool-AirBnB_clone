@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Unittest module for the FileStorage class."""
 
+import models
 import unittest
 from datetime import datetime
 from models.base_model import BaseModel
@@ -16,3 +17,11 @@ class TestFileStorage(unittest.TestCase):
 
     def test__objects(self):
         self.assertEqual(dict, type(FileStorage._FileStorage__objects))
+
+    def test_all(self):
+        self.assertEqual(dict, type(models.storage.all()))
+
+    def test_new(self):
+        var = storage.all().copy()
+        storage.new(BaseModel())
+        self.assertNotEqual(var, storage.all())
