@@ -17,24 +17,12 @@ class TestBaseModel(unittest.TestCase):
         sleep(0.01)
         Base.save()
         self.assertLess(var, Base.updated_at)
-
-    def test_save2(self):
-        base = BaseModel()
-        var1 = base.updated_at
-        sleep(0.01)
-        base.save()
-        var2 = base.updated_at
-        self.assertLess(var1, var2)
-        sleep(0.05)
-        base.save()
-        self.assertLess(var2, base.updated_at)
     
-    def test_save_updates_file(self):
-        bm = BaseModel()
-        bm.save()
-        bmid = "BaseModel." + bm.id
+    def test_save(self):
+        base = BaseModel()
+        base.save()
         with open("file.json", "r") as f:
-            self.assertIn(bmid, f.read())
+            self.assertIn("BaseModel", f.read())
 
     def test_id(self):
         self.assertEqual(type(BaseModel().id), str)
