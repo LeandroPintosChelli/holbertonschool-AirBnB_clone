@@ -25,3 +25,6 @@ class TestFileStorage(unittest.TestCase):
         var = storage.all().copy()
         storage.new(BaseModel())
         self.assertNotEqual(var, storage.all())
+
+    def test_reload(self):
+        self.assertRaises(FileNotFoundError, models.storage.reload())
