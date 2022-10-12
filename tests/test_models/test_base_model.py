@@ -29,10 +29,12 @@ class TestBaseModel(unittest.TestCase):
         base.save()
         self.assertLess(var2, base.updated_at)
     
-    def test_save_with_arg(self):
+    def test_save_updates_file(self):
         bm = BaseModel()
-        with self.assertRaises(TypeError):
-            bm.save(None)
+        bm.save()
+        bmid = "BaseModel." + bm.id
+        with open("file.json", "r") as f:
+            self.assertIn(bmid, f.read())
 
     def test_id(self):
         self.assertEqual(type(BaseModel().id), str)
