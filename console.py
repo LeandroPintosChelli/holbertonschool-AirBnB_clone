@@ -2,16 +2,9 @@
 """Defines the HBnB console."""
 import cmd
 from models.base_model import BaseModel
-from models.amenity import Amenity
-from models.city import City
 from models.engine.file_storage import FileStorage
-from models.__init__ import storage
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import user
-
-
+from models import storage
+import json
 
 class HBNBCommand(cmd.Cmd):
     """Defines the HolbertonBnB command interpreter.
@@ -39,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
         if arg == "" or arg is None:
             print("** class name missing **")
         else: 
-            if arg in self.Classes:
+            if arg in storage.Classes:
                 new = eval("{}()".format(arg))
                 new.save()
                 print("{}".format(new.id))

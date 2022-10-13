@@ -1,13 +1,8 @@
 #!/usr/bin/python3
 """File Storage"""
+import cmd
 import json
-from models.base_model import BaseModel
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import user
-from models.amenity import Amenity
-from models.city import City
+import os
 
 class FileStorage:
     """serializes and deserialzes json files"""
@@ -47,6 +42,14 @@ class FileStorage:
 
     def Classes(self):
         """Dictionary of valid classes"""
+        from models.base_model import BaseModel
+        from models.place import Place
+        from models.review import Review
+        from models.state import State
+        from models.user import user
+        from models.amenity import Amenity
+        from models.city import City
+
         Classes = {"BaseModel": BaseModel,
                     "Amanity": Amenity,
                     "City": City,
