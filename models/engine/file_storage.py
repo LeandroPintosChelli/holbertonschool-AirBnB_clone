@@ -2,7 +2,12 @@
 """File Storage"""
 import json
 from models.base_model import BaseModel
-
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import user
+from models.amenity import Amenity
+from models.city import City
 
 class FileStorage:
     """serializes and deserialzes json files"""
@@ -39,3 +44,14 @@ class FileStorage:
                     self.new(eval(cls_name)(**i))
         except FileNotFoundError:
             pass
+
+    def Classes(self):
+        """Dictionary of valid classes"""
+        Classes = {"BaseModel": BaseModel,
+                    "Amanity": Amenity,
+                    "City": City,
+                    "Place": Place,
+                    "Review": Review,
+                    "State": State,
+                    "User": user}
+        return Classes
