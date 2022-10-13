@@ -31,13 +31,12 @@ class HBNBCommand(cmd.Cmd):
         """Creates an instance"""
         if arg == "" or arg is None:
             print("** class name missing **")
-        else: 
-            if arg in storage.Classes:
-                new = eval("{}()".format(arg))
-                new.save()
-                print("{}".format(new.id))
-            else:
-                print("** class doesn't exist **")
+        elif arg not in storage.Classes():
+            print("** class doesn't exist **")
+        else:
+            p = storage.Classes(arg)
+            p.save()
+            print(p.id)
 
     
 if __name__ == '__main__':
