@@ -44,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
             if args in self.Classes:
                 new = eval("{}()".format(args))
                 new.save()
-                print("")("{}".format(args.id))
+                print("{}".format(args.id))
             else:
                 print("** class doesn't exist **")
 
