@@ -34,10 +34,6 @@ class HBNBCommand(cmd.Cmd):
         elif arg not in storage.Classes():
             print("** class doesn't exist **")
         else:
-            p = storage.Classes(arg)
+            p = storage.Classes()[arg]()
             p.save()
             print(p.id)
-
-    
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
