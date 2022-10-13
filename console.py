@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Defines the HBnB console."""
 import cmd
-import imp
 from models.base_model import BaseModel
 from models.amenity import Amenity
 from models.city import City
@@ -39,12 +38,12 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """Creates an instance"""
         if args is None:
-            print("")("** class name missing **")
+            print("** class name missing **")
         else: 
             if args in self.Classes:
                 new = eval("{}()".format(args))
                 new.save()
-                print("{}".format(args.id))
+                print("{}".format(new.id))
             else:
                 print("** class doesn't exist **")
 
