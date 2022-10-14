@@ -23,33 +23,50 @@ class FileStorage:
 
     def save(self):
         """Serialzes __objects to JSON file."""
-        new_dict = {}
         # Store the objects dictionary
         # provided by the 'to_dict' method.
-        for key, obj in self.__objects.items():
-            # a copy of the dict is created
-            new_dict[key] = obj.to_dict()
+        # a copy of the dict is created
         # Convert the dict into a json file
+        new_dict = {}
+        
+        for key, obj in self.__objects.items():
+            new_dict[key] = obj.to_dict()        
         with open(self.__file_path, 'w') as f:
             json.dump(new_dict, f)
 
     def reload(self):
         """If json file exists, read it and 
         convert object dicts back to instances"""
+        # Open the file 
+        # Converts the file into a dictionary
+        # Create the objects and stores them in the class variable
         try:
-            # Open the file 
-            with open(self.__file_path, 'r') as f:
-                # Converts the file into a dictionary
+            with open(self.__file_path, 'r') as f:    
                 new_obj = json.load(f)
-                for i in new_obj.values():
-                    cls_name = i["__class__"]
-                    del i["__class__"]
-                    # Create the objects and stores them in the class variable
-                    self.new(eval(cls_name)(**i))
+                for key, val in new_obj.values():
+                    self.new(eval(new_obj['__class__'])(**i))
         except FileNotFoundError:
             pass
 
-    def Classes(self):
+    # def Classes(self):
+    #     """Dictionary of valid classes"""
+    #     from models.base_model import BaseModel
+    #     from models.place import Place
+    #     from models.review import Review
+    #     from models.state import State
+    #     from models.user import User
+    #     from models.amenity import Amenity
+    #     from models.city import City
+
+    #     Classes = {"BaseModel": BaseModel,
+    #                 "Amanity": Amenity,
+    #                 "City": City,
+    #                 "Place": Place,
+    #                 "Review": Review,
+    #                 "State": State,
+    #                 "User": User}
+    #     return Classes
+    def Classes(self, arg):
         """Dictionary of valid classes"""
         from models.base_model import BaseModel
         from models.place import Place
@@ -59,11 +76,11 @@ class FileStorage:
         from models.amenity import Amenity
         from models.city import City
 
-        Classes = {"BaseModel": BaseModel,
-                    "Amanity": Amenity,
-                    "City": City,
-                    "Place": Place,
-                    "Review": Review,
-                    "State": State,
-                    "User": User}
-        return Classes
+        Classes = {"BaseModel": BaseModel(),
+                    "Amanity": Amenity(),
+                    "City": City(),
+                    "Place": Place(),
+                    "Review": Review(),
+                    "State": State(),
+                    "User": User()}
+        return Classes[arg]

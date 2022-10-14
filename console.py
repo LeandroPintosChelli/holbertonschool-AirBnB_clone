@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 """Defines the HBnB console."""
 import cmd
-from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
-from models import storage
-import json
+
 
 class HBNBCommand(cmd.Cmd):
     """Defines the HolbertonBnB command interpreter.
@@ -20,7 +17,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """EOF signal to exit the program."""
-        print("")("")
+        print("")
         exit()
 
     def emptyline(self):
@@ -28,13 +25,17 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     # def do_create(self, arg):
+    #     print(arg)
     #     """Creates an instance"""
     #     if arg == "" or arg is None:
-    #         print("** class name missing **")
+    #          print("** class name missing **")
     #     elif arg not in storage.Classes():
     #         print("** class doesn't exist **")
     #     else:
-    #         p = storage.Classes()[arg]() # pone el argumento que le paso
-    #         # a la consola y lo transforma en una instancia de la clase que le paso
+    #         p = storage.Classes(arg) # pone el argumento que le paso
+    #      # a la consola y lo transforma en una instancia de la clase que le paso
     #         p.save()
     #         print(p.id)
+
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
