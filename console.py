@@ -52,8 +52,8 @@ class HBNBCommand(cmd.Cmd):
                 key = "{}.{}".format(words[0], words[1])
                 if key not in storage.all():
                     print("** no instance found **")
-            #     else:
-            #         print(storage.all()[key])
+                else:
+                    print(storage.all()[key])
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
