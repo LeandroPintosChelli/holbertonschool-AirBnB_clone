@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Defines the HBnB console."""
+from ast import Not
 import cmd
 from models import storage
 
@@ -39,12 +40,14 @@ class HBNBCommand(cmd.Cmd):
             print(p.id)
 
     def do_show(self, arg):
-        """Prints the string representation of an instance."""
+        """Prints the string representation of an instance
+        based on the class name and id"""
         # Do the print if the class name is missing.
         if arg == "" or arg is None:
             print("** class name missing **")
         else:
-            # Split the Classes based on the id and class name
+            # Split the Classes when found a space
+            # and compare the arg with the class in Classes 
             # if no one is the id, do the print.
             words = arg.split(' ')
             if words[0] not in storage.Classes():
@@ -77,6 +80,23 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     del storage.all()[key]
                     storage.save()
+
+    def do_all(self, arg):
+        """Prints all string representation of all instances
+        based or not on the class name"""
+        if arg is not "":
+            words = arg.split(' ')
+            if words[0] not in storage.classes():
+                print("** class doesn't exist **")
+            else:
+                # If it is equal, search it in storage and print it into string. 
+                lis = [str(obj) for key, obj in storage.all().items()
+                    if type(obj).__name__ == words[0]]
+                print(lis)
+        else:
+            # If found an arg equal to a class print it
+            lis = [str(obj) for key, obj in storage.all().items()]
+            print(lis)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
