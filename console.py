@@ -27,13 +27,14 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing when receiving an empty line."""
         pass
 
-    def do_create(self, arg):
-        """Creates an instance"""
-        if arg == "" or arg is None:
-            print("** class name missing **")
-        elif arg not in storage.Classes():
-            print("** class doesn't exist **")
-        else:
-            p = storage.Classes()[arg]()
-            p.save()
-            print(p.id)
+    # def do_create(self, arg):
+    #     """Creates an instance"""
+    #     if arg == "" or arg is None:
+    #         print("** class name missing **")
+    #     elif arg not in storage.Classes():
+    #         print("** class doesn't exist **")
+    #     else:
+    #         p = storage.Classes()[arg]() # pone el argumento que le paso
+    #         # a la consola y lo transforma en una instancia de la clase que le paso
+    #         p.save()
+    #         print(p.id)

@@ -16,35 +16,44 @@ class BaseModel:
             **kwargs (dict): Key/value pairs of attributes.
         """
         t_format = "%Y-%m-%dT%H:%M:%S.%f"
-        self.id = str(uuid4())  # Asigna un uuid al id y lo convierte en string
-        self.created_at = datetime.now()  # Cuando se crea la instancia se imprime la fecha y hora
-        self.updated_at = datetime.now()  # Cuando se crea la instancia se imprime la fecha y hora
+        # Assing a uuid to the id and convert it intoastring.
+        self.id = str(uuid4())
+        # Print the date and time when an instance is created.
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
         if len(kwargs) != 0:
-            for key, value in kwargs.items():  # Devuelve la lista con las keys con valores del diccionario
-                if key == "created_at" or key == "updated_at":  # Cuando la key es igual a los strings:
-                    self.__dict__[key] = datetime.strptime(value, t_format)  # Strptime, crea un objeto de fecha y hora a partir de una cadena dada
-                else:  # Si key no es igual a los strings, lo iguala al value
+            # Return the list with the keys and the values of the dict.
+            for key, value in kwargs.items():
+                # If the key is equal to the strings:
+                # Create an object with date and time from a given string.
+                if key == "created_at" or key == "updated_at":
+                    self.__dict__[key] = datetime.strptime(value, t_format)
+                else:
+                    # If the key is not equal to the string, equals it to te value.
                     self.__dict__[key] = value
         else:
+            #Calls te method 'new' of the FileStorage class
             models.storage.new(self)
 
     def save(self):
         """Update updated_at with the current datetime."""
-        self.updated_at = datetime.now()  # Actualiza el atributo publico con la fecha y hora actual
+        self.updated_at = datetime.now()
         models.storage.save()
 
-    def to_dict(self):  # Retorna un diccionario con las keys y values de __dict__ de la instancia
-        """Return the dictionary of the BaseModel instance.
+    def to_dict(self):
+        """Converts an object into a dictionary.
         Includes the key/value pair __class__ representing
         the class name of the object.
         """
-        dictionary = self.__dict__.copy()  # Hace una copia del diccionario
+        # Create a copy of the __dict__ and not only
+        # reference it, to not modify the original 
+        dictionary = self.__dict__.copy()
         dictionary["__class__"] = self.__class__.__name__
-        dictionary["created_at"] = dictionary["created_at"].isoformat()  # Lo convierte en ISO format
-        dictionary["updated_at"] = dictionary["updated_at"].isoformat()  # Lo convierte en ISO format
+        dictionary["created_at"] = dictionary["created_at"].isoformat()
+        dictionary["updated_at"] = dictionary["updated_at"].isoformat()
         return dictionary
 
     def __str__(self):
-        """Print the str representation of the BaseModel instance."""
+        """Print the str representation of the object."""
         return "[{}] ({}) {}".\
             format(self.__class__.__name__, self.id, self.__dict__)
