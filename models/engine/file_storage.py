@@ -41,10 +41,12 @@ class FileStorage:
         # Converts the file into a dictionary
         # Create the objects and stores them in the class variable
         try:
-            with open(self.__file_path, 'r') as f:    
+            with open(self.__file_path, 'r') as f:
                 new_obj = json.load(f)
-                for key, val in new_obj.values():
-                    self.new(eval(new_obj['__class__'])(**key))
+                for i in new_obj.values():
+                    cls_name = i["__class__"]
+                    del i["__class__"]
+                    self.new(eval(cls_name)(**i))
         except FileNotFoundError:
             pass
 
