@@ -116,7 +116,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 3:
             print("** value missing **")
             return
-        if args[0] not in HBNBCommand.valid_classes:
+        if args[0] not in storage.Classes():
             print("** class doesn't exist **")
             return
         all_objs = storage.all()
