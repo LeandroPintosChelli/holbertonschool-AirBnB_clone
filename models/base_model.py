@@ -30,7 +30,7 @@ class BaseModel:
                     self.__dict__[key] = datetime.strptime(value, t_format)
                 else:
                     # If the key is not equal to the string
-                    # equals it to te value.
+                    # equals it to the value.
                     self.__dict__[key] = value
         else:
             # Calls te method 'new' of the FileStorage class
