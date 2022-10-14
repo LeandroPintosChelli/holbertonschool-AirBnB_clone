@@ -3,6 +3,7 @@
 from ast import Not
 import cmd
 from models import storage
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -86,15 +87,15 @@ class HBNBCommand(cmd.Cmd):
         based or not on the class name"""
         if arg != "":
             words = arg.split(' ')
-            if words[0] not in storage.classes():
+            if words[0] not in storage.Classes():
                 print("** class doesn't exist **")
+            # If it is equal, search it in storage and print it into string.
             else:
-                # If it is equal, search it in storage and print it into string. 
                 lis = [str(obj) for key, obj in storage.all().items()
                     if type(obj).__name__ == words[0]]
                 print(lis)
+        # If found an arg equal to a class print it
         else:
-            # If found an arg equal to a class print it
             lis = [str(obj) for key, obj in storage.all().items()]
             print(lis)
 
