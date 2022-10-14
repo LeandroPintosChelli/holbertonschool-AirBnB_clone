@@ -5,7 +5,6 @@ import cmd
 import string
 from models import storage
 from models.base_model import BaseModel
-from models.__init__ import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -101,29 +100,29 @@ class HBNBCommand(cmd.Cmd):
             lis = [str(obj) for key, obj in storage.all().items()]
             print(lis)
 
-    def do_update(self, arg):
-        """Updates an instance based on the class name and id
-        by adding or updating attribute"""
-        arg = arg.split()
-        if len(arg) == 0:
+    def do_update(self, args):
+        """Updates an instance based on the class name
+        and id by adding or updating attribute"""
+        args = args.split()
+        if len(args) == 0:
             print("** class name missing **")
             return
-        if len(arg) == 1:
+        if len(args) == 1:
             print("** instance id missing **")
             return
-        if len(arg) == 2:
+        if len(args) == 2:
             print("** attribute name missing **")
             return
-        if len(arg) == 3:
+        if len(args) == 3:
             print("** value missing **")
             return
-        if arg[0] not in storage.Classes():
+        if args[0] not in HBNBCommand.valid_classes:
             print("** class doesn't exist **")
             return
         all_objs = storage.all()
         for obj_id in all_objs.keys():
-            if obj_id == arg[1]:
-                setattr(all_objs[obj_id], arg[2], arg[3])
+            if obj_id == args[1]:
+                setattr(all_objs[obj_id], args[2], args[3])
                 storage.save()
                 return
         print("** no instance found **")
