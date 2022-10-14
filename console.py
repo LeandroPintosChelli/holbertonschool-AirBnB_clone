@@ -5,7 +5,7 @@ import cmd
 import string
 from models import storage
 from models.base_model import BaseModel
-from symbol import arglist
+from models.__init__ import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -124,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
         for obj_id in all_objs.keys():
             if obj_id == arg[1]:
                 setattr(all_objs[obj_id], arg[2], arg[3])
-                storage.save(arg)
+                storage.save()
                 return
         print("** no instance found **")
 
