@@ -29,10 +29,11 @@ class BaseModel:
                 if key == "created_at" or key == "updated_at":
                     self.__dict__[key] = datetime.strptime(value, t_format)
                 else:
-                    # If the key is not equal to the string, equals it to te value.
+                    # If the key is not equal to the string
+                    # equals it to te value.
                     self.__dict__[key] = value
         else:
-            #Calls te method 'new' of the FileStorage class
+            # Calls te method 'new' of the FileStorage class
             models.storage.new(self)
 
     def save(self):
@@ -46,7 +47,7 @@ class BaseModel:
         the class name of the object.
         """
         # Create a copy of the __dict__ and not only
-        # reference it, to not modify the original 
+        # reference it, to not modify the original.
         dictionary = self.__dict__.copy()
         dictionary["__class__"] = self.__class__.__name__
         dictionary["created_at"] = dictionary["created_at"].isoformat()

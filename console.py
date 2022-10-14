@@ -3,6 +3,7 @@
 import cmd
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     """Defines the HolbertonBnB command interpreter.
     Attributes:
@@ -28,14 +29,16 @@ class HBNBCommand(cmd.Cmd):
         print(arg)
         """Creates an instance"""
         if arg == "" or arg is None:
-             print("** class name missing **")
+            print("** class name missing **")
         elif arg not in storage.Classes():
             print("** class doesn't exist **")
         else:
-            p = storage.Classes()[arg]() # pone el argumento que le paso
-         # a la consola y lo transforma en una instancia de la clase que le paso
+            p = storage.Classes()[arg]()
+        # pone el argumento que le paso
+        # a la consola y lo transforma en una instancia de la clase que le paso
             p.save()
             print(p.id)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

@@ -28,16 +28,16 @@ class FileStorage:
         # a copy of the dict is created
         # Convert the dict into a json file
         new_dict = {}
-        
+
         for key, obj in self.__objects.items():
-            new_dict[key] = obj.to_dict()        
+            new_dict[key] = obj.to_dict()
         with open(self.__file_path, 'w') as f:
             json.dump(new_dict, f)
 
     def reload(self):
-        """If json file exists, read it and 
+        """If json file exists, read it and
         convert object dicts back to instances"""
-        # Open the file 
+        # Open the file
         # Converts the file into a dictionary
         # Create the objects and stores them in the class variable
         try:
@@ -60,7 +60,8 @@ class FileStorage:
         from models.amenity import Amenity
         from models.city import City
 
-        Classes = {"BaseModel": BaseModel,
+        Classes = {
+                    "BaseModel": BaseModel,
                     "Amanity": Amenity,
                     "City": City,
                     "Place": Place,
@@ -68,21 +69,3 @@ class FileStorage:
                     "State": State,
                     "User": User}
         return Classes
-    # def Classes(self, arg):
-    #     """Dictionary of valid classes"""
-    #     from models.base_model import BaseModel
-    #     from models.place import Place
-    #     from models.review import Review
-    #     from models.state import State
-    #     from models.user import User
-    #     from models.amenity import Amenity
-    #     from models.city import City
-
-    #     Classes = {"BaseModel": BaseModel(),
-    #                 "Amanity": Amenity(),
-    #                 "City": City(),
-    #                 "Place": Place(),
-    #                 "Review": Review(),
-    #                 "State": State(),
-    #                 "User": User()}
-    #     return Classes[arg]
