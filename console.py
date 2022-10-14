@@ -65,18 +65,18 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             words = arg.split(' ')
-        if words[0] not in storage.Classes():
-                print("** class doesn't exist **")
-        elif len(words) < 2:
-            print("** instance id missing **")
-        else:
-            key = "{}.{}".format(words[0], words[1])
-            if key not in storage.all():
-                print("** no instance found **")
-            # If key is found delete it.
+            if words[0] not in storage.Classes():
+                    print("** class doesn't exist **")
+            elif len(words) < 2:
+                print("** instance id missing **")
             else:
-                del storage.all()[key]
-                storage.save()
+                key = "{}.{}".format(words[0], words[1])
+                if key not in storage.all():
+                    print("** no instance found **")
+                # If key is found delete it.
+                else:
+                    del storage.all()[key]
+                    storage.save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
