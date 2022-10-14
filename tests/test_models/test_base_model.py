@@ -17,7 +17,7 @@ class TestBaseModel(unittest.TestCase):
         sleep(0.01)
         Base.save()
         self.assertLess(var, Base.updated_at)
-    
+
     def test_save(self):
         base = BaseModel()
         base.save()
@@ -26,7 +26,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test_id(self):
         self.assertEqual(type(BaseModel().id), str)
-    
+
     def test_to_dict(self):
         Base = BaseModel()
         Base_dict = dict(Base.__dict__)
