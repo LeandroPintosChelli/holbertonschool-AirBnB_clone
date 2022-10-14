@@ -50,25 +50,7 @@ class FileStorage:
         except FileNotFoundError:
             pass
 
-    # def Classes(self):
-    #     """Dictionary of valid classes"""
-    #     from models.base_model import BaseModel
-    #     from models.place import Place
-    #     from models.review import Review
-    #     from models.state import State
-    #     from models.user import User
-    #     from models.amenity import Amenity
-    #     from models.city import City
-
-    #     Classes = {"BaseModel": BaseModel,
-    #                 "Amanity": Amenity,
-    #                 "City": City,
-    #                 "Place": Place,
-    #                 "Review": Review,
-    #                 "State": State,
-    #                 "User": User}
-    #     return Classes
-    def Classes(self, arg):
+    def Classes(self):
         """Dictionary of valid classes"""
         from models.base_model import BaseModel
         from models.place import Place
@@ -78,11 +60,29 @@ class FileStorage:
         from models.amenity import Amenity
         from models.city import City
 
-        Classes = {"BaseModel": BaseModel(),
-                    "Amanity": Amenity(),
-                    "City": City(),
-                    "Place": Place(),
-                    "Review": Review(),
-                    "State": State(),
-                    "User": User()}
-        return Classes[arg]
+        Classes = {"BaseModel": BaseModel,
+                    "Amanity": Amenity,
+                    "City": City,
+                    "Place": Place,
+                    "Review": Review,
+                    "State": State,
+                    "User": User}
+        return Classes
+    # def Classes(self, arg):
+    #     """Dictionary of valid classes"""
+    #     from models.base_model import BaseModel
+    #     from models.place import Place
+    #     from models.review import Review
+    #     from models.state import State
+    #     from models.user import User
+    #     from models.amenity import Amenity
+    #     from models.city import City
+
+    #     Classes = {"BaseModel": BaseModel(),
+    #                 "Amanity": Amenity(),
+    #                 "City": City(),
+    #                 "Place": Place(),
+    #                 "Review": Review(),
+    #                 "State": State(),
+    #                 "User": User()}
+    #     return Classes[arg]
