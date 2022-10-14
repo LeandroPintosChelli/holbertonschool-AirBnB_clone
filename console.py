@@ -104,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance based on the class name and id
         by adding or updating attribute"""
         arg = arg.split()
-        if len(arg) == "" or arg is None:
+        if len(arg) == 0:
             print("** class name missing **")
             return
         if len(arg) == 1:
