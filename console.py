@@ -2,6 +2,7 @@
 """Defines the HBnB console."""
 from ast import Not
 import cmd
+import string
 from models import storage
 from models.base_model import BaseModel
 
@@ -98,6 +99,30 @@ class HBNBCommand(cmd.Cmd):
         else:
             lis = [str(obj) for key, obj in storage.all().items()]
             print(lis)
+
+    def do_update(self, arg):
+        """Updates an instance based on the class name and id
+        by adding or updating attribute"""
+        args = arg.split()
+        if len(args) == "" or len(args) is None:
+            print("** class name missing **")
+            return
+        if args[0] in storage.Classes():
+            print("** attribute name missing **")
+            return
+        if len(args) > 1:
+            key = args[0] + '.' + args[1]
+            print("** no instance found **")
+            return
+        if key in storage.all():
+            print("** instance id missing **")
+        if len(args) > 2:
+            print("** class doesn't exist **")
+        if len(args) > 3:
+            setattr(storage.all()[key], args[2], args[3])
+            storage.all()[key].save()
+        else:
+            print("** value missing **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
