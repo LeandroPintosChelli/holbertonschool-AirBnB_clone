@@ -84,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints all string representation of all instances
         based or not on the class name"""
-        if arg is not "":
+        if arg != "":
             words = arg.split(' ')
             if words[0] not in storage.classes():
                 print("** class doesn't exist **")
