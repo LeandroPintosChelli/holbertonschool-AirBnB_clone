@@ -12,6 +12,7 @@ import os
 
 
 class TestFileStorage(unittest.TestCase):
+    """Testing for FileStorage class"""
 
     def test_file_path_(self):
         self.assertEqual(str, type(FileStorage._FileStorage__file_path))
@@ -27,9 +28,9 @@ class TestFileStorage(unittest.TestCase):
         storage.new(BaseModel())
         self.assertNotEqual(var, storage.all())
 
-    def test_reload(self):
-        pass
-
     def test_save(self):
         with self.assertRaises(TypeError):
             models.storage.save(None)
+
+    def test_reload(self):
+        self.assertRaises(FileNotFoundError, models.storage.reload())
