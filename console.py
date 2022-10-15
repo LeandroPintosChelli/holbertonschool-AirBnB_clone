@@ -124,9 +124,11 @@ class HBNBCommand(cmd.Cmd):
         if not id_val:
             print("** no instance found **")
         if len(args) == 2:
-            print("** attribute name missing **")  
+            print("** attribute name missing **")
+            return  
         if len(args) == 3:
             print("** value missing **")
+            return
         setattr(id_val, args[2], args[3])
         id_val.save()
         
