@@ -121,10 +121,15 @@ class HBNBCommand(cmd.Cmd):
         for obj_id in all_objs.keys():
             if obj_id == var:
                 id_val = all_objs[obj_id]
-        setattr(id_val, args[2], args[3])
-        id_val.save()
         if not id_val:
             print("** no instance found **")
+        if len(args) == 2:
+            print("** attribute name missing **")  
+        if len(args) == 3:
+            print("** value missing **")
+        setattr(id_val, args[2], args[3])
+        id_val.save()
+        
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
