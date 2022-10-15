@@ -96,7 +96,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 lis = [str(obj) for key, obj in storage.all().items()
                        if type(obj).__name__ == words[0]]
-            print(lis)
+                print(lis)
         # If found an arg equal to a class print it
         else:
             lis = [str(obj) for key, obj in storage.all().items()]

@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Module for users Class"""
-
 from models.base_model import BaseModel
 
 
