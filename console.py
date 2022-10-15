@@ -5,6 +5,7 @@ import cmd
 import string
 from models import storage
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -110,22 +111,20 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 1:
             print("** instance id missing **")
             return
-        if len(args) == 2:
-            print("** attribute name missing **")
-            return
-        if len(args) == 3:
-            print("** value missing **")
-            return
         if args[0] not in storage.Classes():
             print("** class doesn't exist **")
             return
+        var = args[0] + "." + args[1]
+        instance = FileStorage()
         all_objs = storage.all()
+        id_val = False
         for obj_id in all_objs.keys():
-            if obj_id == args[1]:
-                setattr(all_objs[obj_id], args[2], args[3])
-                storage.save()
-                return
-        print("** no instance found **")
+            if obj_id == var:
+                id_val = all_objs[obj_id]
+        setattr(id_val, args[2], args[3])
+        id_val.save()
+        if not id_val:
+            print("** no instance found **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
