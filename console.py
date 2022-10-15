@@ -51,7 +51,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             # Split the Classes when found a space
-            # and compare the arg with the class in Classes 
+            # and compare the arg with the class in Classes
             # if no one is the id, do the print.
             words = arg.split(' ')
             if words[0] not in storage.Classes():
@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             words = arg.split(' ')
             if words[0] not in storage.Classes():
-                    print("** class doesn't exist **")
+                print("** class doesn't exist **")
             elif len(words) < 2:
                 print("** instance id missing **")
             else:
@@ -95,8 +95,8 @@ class HBNBCommand(cmd.Cmd):
             # If it is equal, search it in storage and print it into string.
             else:
                 lis = [str(obj) for key, obj in storage.all().items()
-                    if type(obj).__name__ == words[0]]
-                print(lis)
+                       if type(obj).__name__ == words[0]]
+            print(lis)
         # If found an arg equal to a class print it
         else:
             lis = [str(obj) for key, obj in storage.all().items()]
@@ -132,12 +132,13 @@ class HBNBCommand(cmd.Cmd):
             return
         if len(arg) < 3:
             print("** attribute name missing **")
-            return  
+            return
         if len(arg) < 4:
             print("** value missing **")
             return
         setattr(id_val, arg[2], arg[3])
         id_val.save()
-        
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
