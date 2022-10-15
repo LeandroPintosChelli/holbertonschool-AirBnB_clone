@@ -11,6 +11,7 @@ from models.user import User
 from models.amenity import Amenity
 from models.city import City
 
+
 class FileStorage:
     """serializes and deserialzes json files"""
 
