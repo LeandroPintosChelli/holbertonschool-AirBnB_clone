@@ -61,7 +61,7 @@ class FileStorage:
 
         Classes = {
                     "BaseModel": BaseModel,
-                    "Amanity": Amenity,
+                    "Amenity": Amenity,
                     "City": City,
                     "Place": Place,
                     "Review": Review,
