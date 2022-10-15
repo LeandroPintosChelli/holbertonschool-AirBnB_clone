@@ -4,8 +4,9 @@
 import os
 import models
 import unittest
-from datetime import datetime
 from models.city import City
+from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 
 class TestCity_instantiation(unittest.TestCase):

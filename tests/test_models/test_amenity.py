@@ -3,8 +3,9 @@
 import os
 import models
 import unittest
-from datetime import datetime
 from models.amenity import Amenity
+from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 
 class TestAmenity_instantiation(unittest.TestCase):

@@ -3,8 +3,9 @@
 import os
 import models
 import unittest
-from datetime import datetime
 from models.state import State
+from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 
 class TestState_instantiation(unittest.TestCase):

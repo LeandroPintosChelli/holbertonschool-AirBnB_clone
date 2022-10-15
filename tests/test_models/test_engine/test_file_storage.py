@@ -3,12 +3,10 @@
 
 import models
 import unittest
-from datetime import datetime
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models import storage
 import json
-import os
 
 
 class TestFileStorage(unittest.TestCase):
@@ -33,4 +31,4 @@ class TestFileStorage(unittest.TestCase):
             models.storage.save(None)
 
     def test_reload(self):
-        self.assertRaises(FileNotFoundError, models.storage.reload())
+        self.assertRaises(TypeError, models.storage.reload())
