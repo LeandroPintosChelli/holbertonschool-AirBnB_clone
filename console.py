@@ -2,6 +2,7 @@
 """Defines the HBnB console."""
 from ast import Not
 import cmd
+from optparse import Values
 import string
 from models import storage
 from models.base_model import BaseModel
@@ -118,9 +119,9 @@ class HBNBCommand(cmd.Cmd):
         instance = FileStorage()
         all_objs = storage.all()
         id_val = False
-        for obj_id in all_objs.keys():
-            if obj_id == var:
-                id_val = all_objs[obj_id]
+        for key, values in all_objs.items():
+            if key == var:
+                id_val = values
         if not id_val:
             print("** no instance found **")
         if len(arg) == 2:
@@ -133,5 +134,3 @@ class HBNBCommand(cmd.Cmd):
         id_val.save()
         
 
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
