@@ -108,22 +108,28 @@ class HBNBCommand(cmd.Cmd):
         if len(line) == 0:
             print("** class name missing **")
             return
+
         arg = line.split()
-        if len(arg) == 1:
-            print("** instance id missing **")
-            return
         if arg[0] not in storage.Classes():
             print("** class doesn't exist **")
             return
+
+        if len(arg) < 2:
+            print("** instance id missing **")
+            return
+
         var = arg[0] + "." + arg[1]
         instance = FileStorage()
         all_objs = storage.all()
         id_val = False
+
         for key, values in all_objs.items():
             if key == var:
                 id_val = values
+
         if not id_val:
             print("** no instance found **")
+            return
         if len(arg) < 3:
             print("** attribute name missing **")
             return  
