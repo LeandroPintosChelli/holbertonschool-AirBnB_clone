@@ -27,5 +27,6 @@ class TestFileStorage(unittest.TestCase):
         storage.new(BaseModel())
         self.assertNotEqual(var, storage.all())
 
-    def test_reload(self):
-        self.assertRaises(FileNotFoundError, models.storage.reload())
+    def test_reload_with_arg(self):
+        with self.assertRaises(TypeError):
+            models.storage.reload(None)

@@ -14,6 +14,14 @@ from models.user import User
 class TestUser(unittest.TestCase):
     """Test Cases for the User class."""
 
-    def test_no_args_instantiates(self):
-        self.assertEqual(User, type(User()))
-        
+    def test_email(self):
+        self.assertEqual(str, type(User.email))
+
+    def test_password(self):
+        self.assertEqual(str, type(User.password))
+
+    def test_first_name(self):
+        self.assertEqual(str, type(User.first_name))
+
+    def test_last_name(self):
+        self.assertEqual(str, type(User.last_name))
