@@ -37,9 +37,9 @@ class HBNBCommand(cmd.Cmd):
         elif arg not in storage.Classes():
             print("** class doesn't exist **")
         else:
+            # Take the argument that I send it and convert it
+            # into a instance of the class i pass to it
             p = storage.Classes()[arg]()
-        # pone el argumento que le paso
-        # a la consola y lo transforma en una instancia de la clase que le paso
             p.save()
             print(p.id)
 
